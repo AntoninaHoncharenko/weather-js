@@ -1,4 +1,5 @@
 import axios from 'axios';
+const KEY = '228ad8d0319cc220638927b04c717d92';
 
 export class ApiService {
   constructor() {
@@ -6,8 +7,14 @@ export class ApiService {
   }
 
   async fetchWeatherByQuery() {
-    const KEY = '228ad8d0319cc220638927b04c717d92';
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.searchQuery}&appid=${KEY}&units=metric`;
+
+    const { data } = await axios.get(url);
+    return data;
+  }
+
+  async fetchWeatherForecast() {
+    const url = `http://api.openweathermap.org/data/2.5/forecast?q=${this.searchQuery}&appid=${KEY}&units=metric`;
 
     const { data } = await axios.get(url);
     return data;

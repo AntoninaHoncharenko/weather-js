@@ -7,6 +7,7 @@ const apiService = new ApiService();
 const refs = {
   searchForm: document.querySelector('.search-form'),
   weatherCard: document.querySelector('.weather-card'),
+  forecastBtn: document.querySelector('.forecast-btn'),
 };
 
 // async function onGeolocation(lat, lon) {
@@ -46,8 +47,13 @@ async function onFormSubmit(event) {
     const markup = createMarkup(data);
     refs.weatherCard.classList.remove('is-hidden');
     refs.weatherCard.innerHTML = markup;
+    refs.forecastBtn.classList.remove('is-hidden');
   } catch (error) {
     Notify.failure('Enter correct name');
     console.log(error);
   }
 }
+
+refs.forecastBtn.addEventListener('click', onForecastBtnClick);
+
+function onForecastBtnClick() {}

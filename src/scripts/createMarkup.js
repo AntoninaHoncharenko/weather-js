@@ -10,7 +10,7 @@ export function createMarkup({ name, weather, main, wind, sys }) {
         />
       </div>
     </div>
-    <div class="conrainer">
+    <div class="container">
       <div class="parameters">
         <p>Temperature</p>
         <p>Feels like</p>
