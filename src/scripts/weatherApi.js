@@ -7,7 +7,7 @@ export class ApiService {
 
   async fetchWeatherByQuery() {
     const KEY = '228ad8d0319cc220638927b04c717d92';
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${this.searchQuery}&appid=${KEY}&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.searchQuery}&appid=${KEY}&units=metric`;
 
     const { data } = await axios.get(url);
     return data;
