@@ -1,7 +1,6 @@
 import { ApiService } from './scripts/weatherApi';
 import { createMarkup } from './scripts/createMarkup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import axios from 'axios';
 
 const apiService = new ApiService();
 
