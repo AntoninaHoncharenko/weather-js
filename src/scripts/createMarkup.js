@@ -1,20 +1,31 @@
-export function createMarkup(data) {
-  return `<h2>${data.name}</h2>
-      <p>Країна</p>
-      <div>
-        <p>Температура, °C</p>
-        <p>Відчувається як</p>
-        <p>Вологість, %</p>
-        <p>Вітер, м/сек</p>
-        <p>Схід сонця</p>
-        <p>Захід сонця</p>
+import { format } from 'date-fns';
+
+export function createMarkup({ name, weather, main, wind, sys }) {
+  return /*html*/ `<div class="title-container">
+      <h2>${name}</h2>
+      <div class="img-container">
+        <img
+          src="http://openweathermap.org/img/wn/${weather[0].icon}@2x.png"
+          alt="a"
+        />
       </div>
-      <div>
-        <p>${data.main.temp}</p>
-        <p>${data.main.temp}</p>
-        <p>${data.main.humidity}</p>
-        <p>${data.wind.speed}</p>
-        <p>${data.sys.sunrise}</p>
-        <p>${data.sys.sunset}</p>
-      </div>`;
+    </div>
+    <div class="conrainer">
+      <div class="parameters">
+        <p>Temperature</p>
+        <p>Feels like</p>
+        <p>Humidity</p>
+        <p>Wind, speed</p>
+        <p>Sunrise</p>
+        <p>Sunset</p>
+      </div>
+      <div class="values">
+        <p>${main.temp.toFixed(0)} °C</p>
+        <p>${main.temp.toFixed(0)} °C</p>
+        <p>${main.humidity} %</p>
+        <p>${wind.speed.toFixed(0)} m/s</p>
+        <p>${format(new Date(sys.sunrise * 1000), 'HH:mm')}</p>
+        <p>${format(new Date(sys.sunset * 1000), 'HH:mm')}</p>
+      </div>
+    </div>`;
 }

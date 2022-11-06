@@ -90,10 +90,28 @@ input {
   background-color: orangered;
 }
 
+.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .weather-card {
   width: 300px;
   height: 300px;
   border: 2px solid orangered;
   margin-left: auto;
   margin-right: auto;
+}
+
+.title-container {
+  display: flex;
+}
+
+.conrainer {
+  display: flex;
+}
+
+.parameters {
+  margin-right: 50px;
 }
