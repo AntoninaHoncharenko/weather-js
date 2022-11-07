@@ -10,22 +10,26 @@ const refs = {
   forecastBtn: document.querySelector('.forecast-btn'),
 };
 
-// async function onGeolocation(lat, lon) {
-//   try {
-//     const data = await apiService.fetchWeatherByCoords(lat, lat);
-//     console.log(data);
-//     const markup = createMarkup(data);
-//     refs.weatherCard.innerHTML = markup;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+navigator.geolocation?.getCurrentPosition(({ coords }) => {
+  const { latitude, longitude } = coords;
+  apiService.lat = latitude;
+  apiService.lon = longitude;
+  console.log(apiService.lat);
+  console.log(apiService.lon);
+  onGeolocation();
+});
 
-// navigator.geolocation?.getCurrentPosition(({ coords }) => {
-//   console.log(coords);
-//   const { latitude, longitude } = coords;
-//   onGeolocation(latitude, longitude);
-// });
+async function onGeolocation() {
+  try {
+    const data = await apiService.fetchWeatherByCoords();
+    const markup = createMarkup(data);
+    refs.weatherCard.innerHTML = markup;
+    refs.weatherCard.classList.remove('is-hidden');
+    refs.forecastBtn.classList.remove('is-hidden');
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 refs.searchForm.addEventListener('submit', onFormSubmit);
 
@@ -44,10 +48,10 @@ async function onFormSubmit(event) {
 
   try {
     const data = await apiService.fetchWeatherByQuery();
+    refs.forecastBtn.classList.add('is-hidden');
     const markup = createMarkup(data);
     refs.weatherCard.classList.remove('is-hidden');
     refs.weatherCard.innerHTML = markup;
-    refs.forecastBtn.classList.remove('is-hidden');
   } catch (error) {
     Notify.failure('Enter correct name');
     console.log(error);
@@ -56,4 +60,11 @@ async function onFormSubmit(event) {
 
 refs.forecastBtn.addEventListener('click', onForecastBtnClick);
 
-function onForecastBtnClick() {}
+async function onForecastBtnClick() {
+  try {
+    const data = await apiService.fetchWeatherForecast();
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
