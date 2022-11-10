@@ -17,7 +17,7 @@ export function createMarkup({ name, weather, main, wind, sys, dt }) {
   </div>
           <div class="img-container">
             <img class="icon"
-              src="http://openweathermap.org/img/wn/${weather[0].icon}@2x.png"
+              src="https://openweathermap.org/img/wn/${weather[0].icon}@2x.png"
               alt="a"
               width="130" height="130"
             />
