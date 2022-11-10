@@ -1,5 +1,6 @@
 import { ApiService } from './scripts/weatherApi';
 import { createMarkup } from './scripts/createMarkup';
+import { createMarkupForecast } from './scripts/createMarkupForecast';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const apiService = new ApiService();
@@ -8,6 +9,7 @@ const refs = {
   searchForm: document.querySelector('.search-form'),
   weatherCard: document.querySelector('.weather-card'),
   forecastBtn: document.querySelector('.forecast-btn'),
+  forecastList: document.querySelector('.forecast-list'),
 };
 
 navigator.geolocation?.getCurrentPosition(({ coords }) => {
@@ -60,10 +62,16 @@ async function onFormSubmit(event) {
 
 refs.forecastBtn.addEventListener('click', onForecastBtnClick);
 
-async function onForecastBtnClick() {
+async function onForecastBtnClick(event) {
   try {
-    const data = await apiService.fetchWeatherForecast();
-    console.log(data);
+    const { daily } = await apiService.fetchWeatherForecast();
+    console.log(daily);
+    createMarkupForecast(daily);
+    // const markup = createMarkupForecast(daily);
+    // console.log(markup);
+    const forecastMarkup = createMarkupForecast(daily);
+    console.log(forecastMarkup);
+    refs.forecastList.innerHTML = forecastMarkup;
   } catch (error) {
     console.log(error);
   }

@@ -1,13 +1,25 @@
 import { format } from 'date-fns';
 
-export function createMarkupForecast() {
-  return /*html*/ `<li class="forecast-item">
-        <p class="forecast-date"></p>
+export function createMarkupForecast(daily) {
+  const forecastMarkup = [];
+  for (let i = 1; i <= 5; i += 1) {
+    console.log(daily[i]);
+    const markup = /*html*/ `<li class="forecast-item">
+        <p class="forecast-date">${format(
+          new Date(daily[i].dt * 1000),
+          'dd LLLL'
+        )}</p>
+        <div class="forecast-main-wrap">
         <div class="temp-wrap">
-          <p class="forecast-main-temp"></p>
-          <img src="#" alt="1" class="forecast-img" />
+          <p class="forecast-min-temp">${daily[i].temp.min}</p>
+          <p class="forecast-max-temp">${daily[i].temp.max}</p>
         </div>
-        <p class="forecast-feel-temp"></p>
+        <div class="img-wrap">
+        <img src="https://openweathermap.org/img/wn/${
+          daily[i].weather[0].icon
+        }@2x.png" alt="1" class="forecast-img" />
+        </div>
+        </div>
         <div class="forecast-info-container">
           <div class="forecast-parameters">
             <p class="forecast-info">Humidity</p>
@@ -16,15 +28,19 @@ export function createMarkupForecast() {
             <p class="forecast-info">Sunset</p>
           </div>
           <div class="forecast-values">
-            <p class="forecast-info">${main.humidity} %</p>
-            <p class="forecast-info">${wind.speed.toFixed(0)} m/s</p>
+            <p class="forecast-info">${daily[i].humidity} %</p>
+            <p class="forecast-info">${daily[i].wind_speed.toFixed(0)} m/s</p>
             <p class="forecast-info">
-              ${format(new Date(sys.sunrise * 1000), 'HH:mm')}
+              ${format(new Date(daily[i].sunrise * 1000), 'HH:mm')}
             </p>
             <p class="forecast-info">
-              ${format(new Date(sys.sunset * 1000), 'HH:mm')}
+              ${format(new Date(daily[i].sunset * 1000), 'HH:mm')}
             </p>
           </div>
         </div>
       </li>`;
+    forecastMarkup.push(markup);
+  }
+  const markup1 = forecastMarkup.join('');
+  return markup1;
 }
