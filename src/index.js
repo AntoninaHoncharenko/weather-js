@@ -1,7 +1,8 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { ApiService } from './scripts/weatherApi';
 import { createMarkup } from './scripts/createMarkup';
 import { createMarkupForecast } from './scripts/createMarkupForecast';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { addSmoothScroll } from './scripts/scroll';
 
 const apiService = new ApiService();
 
@@ -16,8 +17,6 @@ navigator.geolocation.getCurrentPosition(({ coords }) => {
   const { latitude, longitude } = coords;
   apiService.lat = latitude;
   apiService.lon = longitude;
-  // console.log(apiService.lat);
-  // console.log(apiService.lon);
   onGeolocation();
 });
 
@@ -38,6 +37,8 @@ refs.searchForm.addEventListener('submit', onFormSubmit);
 async function onFormSubmit(event) {
   event.preventDefault();
   apiService.query = event.currentTarget.elements.searchQuery.value;
+  refs.forecastList.classList.add('is-hidden');
+  refs.forecastBtn.classList.add('is-hidden');
 
   if (apiService.query === '') {
     Notify.failure('Enter the city', {
@@ -50,8 +51,8 @@ async function onFormSubmit(event) {
 
   try {
     const data = await apiService.fetchWeatherByQuery();
-    refs.forecastBtn.classList.add('is-hidden');
     const markup = createMarkup(data);
+
     refs.weatherCard.classList.remove('is-hidden');
     refs.weatherCard.innerHTML = markup;
   } catch (error) {
@@ -62,16 +63,14 @@ async function onFormSubmit(event) {
 
 refs.forecastBtn.addEventListener('click', onForecastBtnClick);
 
-async function onForecastBtnClick(event) {
+async function onForecastBtnClick() {
   try {
     const { daily } = await apiService.fetchWeatherForecast();
-    // console.log(daily);
-    // createMarkupForecast(daily);
-    // const markup = createMarkupForecast(daily);
-    // console.log(markup);
     const forecastMarkup = createMarkupForecast(daily);
-    console.log(forecastMarkup);
+
     refs.forecastList.innerHTML = forecastMarkup;
+    refs.forecastList.classList.remove('is-hidden');
+    addSmoothScroll();
   } catch (error) {
     console.log(error);
   }
