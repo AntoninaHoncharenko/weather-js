@@ -1,9 +1,8 @@
 import { format } from 'date-fns';
 
 export function createMarkupForecast(daily) {
-  const forecastMarkup = [];
+  const markupList = [];
   for (let i = 1; i <= 5; i += 1) {
-    // console.log(daily[i]);
     const markup = /*html*/ `<li class="forecast-item">
         <p class="forecast-date">${format(
           new Date(daily[i].dt * 1000),
@@ -21,7 +20,7 @@ export function createMarkupForecast(daily) {
         <div class="img-wrap">
         <img src="https://openweathermap.org/img/wn/${
           daily[i].weather[0].icon
-        }@2x.png" alt="1" class="forecast-img" />
+        }@2x.png" alt="1" class="forecast-img" width="90" height="90"/>
         </div>
         </div>
         <div class="forecast-info-container">
@@ -43,8 +42,8 @@ export function createMarkupForecast(daily) {
           </div>
         </div>
       </li>`;
-    forecastMarkup.push(markup);
+    markupList.push(markup);
   }
-  const markup1 = forecastMarkup.join('');
-  return markup1;
+  const forecastMarkup = markupList.join('');
+  return forecastMarkup;
 }
