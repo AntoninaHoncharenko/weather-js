@@ -12,12 +12,12 @@ const refs = {
   forecastList: document.querySelector('.forecast-list'),
 };
 
-navigator.geolocation?.getCurrentPosition(({ coords }) => {
+navigator.geolocation.getCurrentPosition(({ coords }) => {
   const { latitude, longitude } = coords;
   apiService.lat = latitude;
   apiService.lon = longitude;
-  console.log(apiService.lat);
-  console.log(apiService.lon);
+  // console.log(apiService.lat);
+  // console.log(apiService.lon);
   onGeolocation();
 });
 
@@ -65,8 +65,8 @@ refs.forecastBtn.addEventListener('click', onForecastBtnClick);
 async function onForecastBtnClick(event) {
   try {
     const { daily } = await apiService.fetchWeatherForecast();
-    console.log(daily);
-    createMarkupForecast(daily);
+    // console.log(daily);
+    // createMarkupForecast(daily);
     // const markup = createMarkupForecast(daily);
     // console.log(markup);
     const forecastMarkup = createMarkupForecast(daily);

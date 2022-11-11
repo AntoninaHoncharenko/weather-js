@@ -3,16 +3,20 @@ import { format } from 'date-fns';
 export function createMarkupForecast(daily) {
   const forecastMarkup = [];
   for (let i = 1; i <= 5; i += 1) {
-    console.log(daily[i]);
+    // console.log(daily[i]);
     const markup = /*html*/ `<li class="forecast-item">
         <p class="forecast-date">${format(
           new Date(daily[i].dt * 1000),
-          'dd LLLL'
+          'iiii dd.MM'
         )}</p>
         <div class="forecast-main-wrap">
-        <div class="temp-wrap">
-          <p class="forecast-min-temp">${daily[i].temp.min}</p>
-          <p class="forecast-max-temp">${daily[i].temp.max}</p>
+        <div class="temp-forecast-wrap">
+          <p class="forecast-min-temp">Min: <span class="forecast-temp">${daily[
+            i
+          ].temp.min.toFixed(0)} °C</span></p>
+          <p class="forecast-max-temp">Max: <span class="forecast-temp">${daily[
+            i
+          ].temp.max.toFixed(0)} °C</span></p>
         </div>
         <div class="img-wrap">
         <img src="https://openweathermap.org/img/wn/${

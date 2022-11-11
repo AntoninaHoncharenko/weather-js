@@ -204,10 +204,13 @@ input {
   font-size: 18px;
 }
 
+// -------------------------
+
 .forecast-btn {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 30px;
   width: 260px;
   height: 50px;
   text-align: center;
@@ -224,4 +227,63 @@ input {
   &:focus {
     background-color: rgb(255, 157, 37);
   }
+}
+
+.forecast-list {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+.forecast-item {
+  width: 240px;
+  height: 100%;
+  border: 2px solid black;
+  background-color: #ffffff;
+  border-radius: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.forecast-date {
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.forecast-main-wrap {
+  display: flex;
+  justify-content: center;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  background-color: rgb(245, 219, 191);
+}
+
+.temp-forecast-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.forecast-info-container {
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.forecast-temp {
+  margin-left: 5px;
+  font-weight: 600;
+}
+
+.forecast-info {
+  border-bottom: 1px solid rgb(253, 135, 0);
 }
