@@ -14,9 +14,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #fafafa;
-  color: #212121;
   line-height: 1.5;
   margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
   background: linear-gradient(
     180deg,
     rgba(255, 167, 66, 1) 0%,
@@ -292,7 +293,7 @@ input {
 
 .forecast-min-temp,
 .forecast-max-temp {
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .forecast-info-container {
