@@ -16,13 +16,12 @@ body {
   background-color: #fafafa;
   line-height: 1.5;
   margin: 0;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
   background: linear-gradient(
-    180deg,
-    rgba(255, 167, 66, 1) 0%,
-    rgba(211, 210, 222, 1) 100%
-  );
+      180deg,
+      rgba(255, 167, 66, 1) 0%,
+      rgba(211, 210, 222, 1) 100%
+    )
+    no-repeat fixed;
 }
 
 ul {
@@ -390,19 +389,21 @@ input {
 }
 
 .to-top-btn {
-  width: 40px;
-  height: 40px;
+  width: 37px;
+  height: 37px;
   border-radius: 50%;
   border: none;
   position: fixed;
-  right: 20px;
-  bottom: 20px;
+  right: 3%;
+  bottom: 2%;
+  padding: 0;
+  background-color: transparent;
 
   @media screen and (min-width: 1200px) {
     display: none;
   }
 }
 
-.hidden {
-  display: none;
+.btn-icon {
+  fill: black;
 }
