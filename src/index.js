@@ -1,12 +1,10 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { Spinner } from 'spin.js';
 import { ApiService } from './scripts/weatherApi';
 import { createMarkup } from './scripts/createMarkup';
 import { createMarkupForecast } from './scripts/createMarkupForecast';
 import { addSmoothScroll } from './scripts/scroll';
 import { spinerPlay } from './scripts/spinner';
 import { spinerStop } from './scripts/spinner';
-
 
 const apiService = new ApiService();
 
