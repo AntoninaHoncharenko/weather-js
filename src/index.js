@@ -6,7 +6,7 @@ import { createMarkupForecast } from './scripts/createMarkupForecast';
 import { addSmoothScroll } from './scripts/scroll';
 import { spinerPlay } from './scripts/spinner';
 import { spinerStop } from './scripts/spinner';
-import { onTopBtnClick } from './scripts/toTopBtn';
+
 
 const apiService = new ApiService();
 
